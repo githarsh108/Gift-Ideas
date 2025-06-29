@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For My Love ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            overflow-x: hidden;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+
+        section {
+            padding: 50px 20px;
+            display: none;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .active {
+            display: flex !important;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2 {
+            font-size: 3rem;
+            color: #d63384;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        #love-meter {
+            width: 250px;
+            height: 250px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 50%;
+            border: 15px solid #ff6b6b;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        #meter-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(to top, #ff6b6b, #ff8e8e);
+            transition: height 0.05s linear;
+            z-index: 1;
+        }
+
+        #love-text {
+            position: absolute;
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 1.5s;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #gift-box {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            margin: 40px auto;
+            position: relative;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        #gift-box:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.4);
+        }
+
+        #gift-box::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 20px;
+            background: #d63384;
+            border-radius: 10px;
+        }
+
+        #gift-box::after {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 200px;
+            background: #d63384;
+            border-radius: 10px;
+        }
+
+        #photo-container {
+            display: none;
+            margin-top: 30px;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        #photo-container.show {
+            display: block;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #photo-container img {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border: 5px solid #fff;
+        }
+
+        .photo-placeholder {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #d63384;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border: 5px solid #fff;
+            margin: 0 auto;
+        }
+
+        .scratch-container {
+            position: relative;
+            width: 350px;
+            margin: 30px auto;
+            height: 180px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        #scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+            cursor: crosshair;
+            z-index: 2;
+        }
+
+        #scratch-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #fff, #ffe0ec);
+            color: #d63384;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            z-index: 1;
+            border-radius: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 20px;
+        }
+
+        #revealed-message {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(45deg, #fff, #ffe0ec);
+            border-radius: 15px;
+            color: #d63384;
+            font-size: 1.3rem;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+            border: 2px solid rgba(255, 107, 107, 0.2);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .flipbook {
+            margin-top: 40px;
+            max-width: 500px;
+        }
+
+        .reason {
+            background: linear-gradient(45deg, #fff, #ffe0ec);
+            margin: 25px auto;
+            padding: 25px;
+            border-radius: 25px;
+            max-width: 450px;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+            font-size: 1.3rem;
+            color: #d63384;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 0.8s ease forwards;
+            border: 2px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .reason:nth-child(even) {
+            transform: translateX(50px);
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .reason:nth-child(1) { animation-delay: 0.2s; }
+        .reason:nth-child(2) { animation-delay: 0.4s; }
+        .reason:nth-child(3) { animation-delay: 0.6s; }
+        .reason:nth-child(4) { animation-delay: 0.8s; }
+        .reason:nth-child(5) { animation-delay: 1s; }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .final-message {
+            font-size: 2rem;
+            margin-top: 40px;
+            color: #d63384;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        .instruction {
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 2rem;
+            }
+            
+            #love-meter {
+                width: 200px;
+                height: 200px;
+            }
+            
+            #gift-box {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .scratch-container {
+                width: 300px;
+            }
+            
+            #scratch-canvas {
+                width: 300px;
+                height: 150px;
+            }
+            
+            #scratch-text {
+                font-size: 1.2rem;
+            }
+            
+            .reason {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section id="start" class="active">
+        <h1>Hey Kashu, Ready for a Surprise? 💕</h1>
+        <p style="font-size: 1.3rem; color: #666; margin-bottom: 30px;">Something special is waiting for you...</p>
+        <button class="btn" onclick="nextStage('loveMeter')">Start the Magic ✨</button>
+    </section>
+
+    <section id="loveMeter">
+        <h2>How much do I love you? ❤️</h2>
+        <div id="love-meter" onmousedown="startFilling()" onmouseup="stopFilling()" onmouseleave="stopFilling()" ontouchstart="startFilling()" ontouchend="stopFilling()">
+            <div id="meter-fill"></div>
+            <div id="love-text">This is how much I love you 💖</div>
+        </div>
+        <p class="instruction">Hold the heart to fill it with love ❤️</p>
+    </section>
+
+    <section id="gift">
+        <h2>Here's a little gift for you 🎁</h2>
+        <div id="gift-box" onclick="openGift()"></div>
+        <p class="instruction">Click the gift box to open it!</p>
+        <div id="photo-container">
+            <div class="photo-placeholder">
+                Your Beautiful Memory 📸<br>
+                <small style="font-size: 1rem; margin-top: 10px; display: block;">
+                    <img src="image.jpg" alt="">
+                </small>
+            </div>
+        </div>
+    </section>
+
+    <section id="scratch">
+        <h2>Scratch to Reveal My Message 💌</h2>
+        <div class="scratch-container">
+            <canvas id="scratch-canvas" width="350" height="180"></canvas>
+            <div id="scratch-text">
+                I love you more than words can say.<br>Happy Birthday, my darling! ❤️
+            </div>
+        </div>
+        <div id="revealed-message">
+            🎉 Surprise! You've revealed my secret message! 🎉<br>
+            <strong>I love you more than words can say.<br>Happy Birthday, my darling! ❤️</strong>
+        </div>
+        <p class="instruction">Scratch away the gray area to reveal the message!</p>
+        <button class="btn" onclick="nextStage('flipbook')" style="margin-top: 40px;">Continue to Love Notes 💕</button>
+    </section>
+
+    <section id="flipbook">
+        <h2>Reasons Why I Love You 💖</h2>
+        <div class="flipbook" id="reasons">
+            <div class="reason">🌟 Your smile brightens my darkest days and fills my heart with joy.</div>
+            <div class="reason">✨ You make everything feel like magic with your presence.</div>
+            <div class="reason">🏠 I feel safe, loved, and at home when I'm with you.</div>
+            <div class="reason">💪 You believe in me even when I don't believe in myself.</div>
+            <div class="reason">♾️ You're my forever and always, my soulmate and best friend.</div>
+        </div>
+        <div class="final-message">Happy Birthday once again, Kashu! 🎂❤️</div>
+        <button class="btn" onclick="restartExperience()" style="margin-top: 30px;">Experience Again 🔄</button>
+    </section>
+
+    <script>
+        // Create sparkle effects
+        function createSparkles() {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 4000);
+                }, i * 200);
+            }
+        }
+
+        // Start sparkles
+        createSparkles();
+        setInterval(createSparkles, 8000);
+
+        function nextStage(id) {
+            const current = document.querySelector("section.active");
+            const next = document.getElementById(id);
+            
+            if (current) {
+                current.classList.remove("active");
+                setTimeout(() => {
+                    next.classList.add("active");
+                }, 100);
+            } else {
+                next.classList.add("active");
+            }
+        }
+
+        function restartExperience() {
+            // Reset all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Reset love meter
+            const fill = document.getElementById('meter-fill');
+            const text = document.getElementById('love-text');
+            fill.style.height = '0%';
+            text.style.opacity = '0';
+            
+            // Reset gift
+            const photo = document.getElementById('photo-container');
+            photo.classList.remove('show');
+            photo.style.display = 'none';
+            
+            // Reset scratch card
+            const revealedMessage = document.getElementById('revealed-message');
+            revealedMessage.style.display = 'none';
+            initScratchCard();
+            
+            // Go back to start
+            setTimeout(() => {
+                document.getElementById('start').classList.add('active');
+            }, 200);
+        }
+
+        let fillInterval;
+        let fillHeight = 0;
+
+        function startFilling() {
+            const fill = document.getElementById('meter-fill');
+            const text = document.getElementById('love-text');
+            fillHeight = 0;
+            text.style.opacity = '0';
+            fill.style.height = '0%';
+
+            fillInterval = setInterval(() => {
+                if (fillHeight < 100) {
+                    fillHeight += 2;
+                    fill.style.height = fillHeight + '%';
+                } else {
+                    clearInterval(fillInterval);
+                    text.style.opacity = '1';
+                    setTimeout(() => nextStage('gift'), 2500);
+                }
+            }, 20);
+        }
+
+        function stopFilling() {
+            clearInterval(fillInterval);
+        }
+
+        function openGift() {
+            const photo = document.getElementById('photo-container');
+            const giftBox = document.getElementById('gift-box');
+            
+            // Add opening animation
+            giftBox.style.transform = 'scale(1.2) rotate(5deg)';
+            setTimeout(() => {
+                giftBox.style.transform = 'scale(0.8) rotate(-5deg)';
+            }, 200);
+            setTimeout(() => {
+                giftBox.style.transform = 'scale(1) rotate(0deg)';
+            }, 400);
+            
+            // Show photo
+            photo.style.display = 'block';
+            photo.classList.add('show');
+
+            // Auto transition after viewing
+            setTimeout(() => {
+                nextStage('scratch');
+            }, 4000);
+        }
+
+        // Enhanced scratch card functionality
+        function initScratchCard() {
+            const canvas = document.getElementById("scratch-canvas");
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext("2d");
+            const revealedMessage = document.getElementById('revealed-message');
+            
+            // Reset canvas
+            canvas.style.opacity = 1;
+            canvas.style.pointerEvents = 'auto';
+            revealedMessage.style.display = 'none';
+            
+            // Create gradient scratch surface
+            const gradient = ctx.createLinearGradient(0, 0, 350, 180);
+            gradient.addColorStop(0, "#ccc");
+            gradient.addColorStop(0.5, "#999");
+            gradient.addColorStop(1, "#ccc");
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add scratch instruction
+            ctx.fillStyle = "#666";
+            ctx.font = "20px Dancing Script";
+            ctx.textAlign = "center";
+            ctx.fillText("Scratch Here!", canvas.width / 2, canvas.height / 2);
+            
+            let isDrawing = false;
+            let scratchPercentage = 0;
+
+            function getFilledPercentage() {
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                let transparentPixels = 0;
+                for (let i = 0; i < imageData.data.length; i += 4) {
+                    if (imageData.data[i + 3] < 128) transparentPixels++;
+                }
+                return (transparentPixels / (canvas.width * canvas.height)) * 100;
+            }
+
+            function scratch(x, y) {
+                ctx.globalCompositeOperation = "destination-out";
+                ctx.beginPath();
+                ctx.arc(x, y, 20, 0, 2 * Math.PI);
+                ctx.fill();
+
+                scratchPercentage = getFilledPercentage();
+                if (scratchPercentage > 60) {
+                    // Fully reveal the message
+                    canvas.style.pointerEvents = "none";
+                    canvas.style.transition = "opacity 1s ease";
+                    canvas.style.opacity = 0;
+                    
+                    // Show the revealed message below
+                    setTimeout(() => {
+                        revealedMessage.style.display = 'block';
+                        revealedMessage.style.animation = 'fadeInScale 1s ease-out';
+                    }, 500);
+                }
+            }
+
+            // Mouse events
+            canvas.addEventListener("mousedown", (e) => {
+                isDrawing = true;
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                scratch(x, y);
+            });
+
+            canvas.addEventListener("mousemove", (e) => {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                scratch(x, y);
+            });
+
+            canvas.addEventListener("mouseup", () => {
+                isDrawing = false;
+            });
+
+            // Touch events for mobile
+            canvas.addEventListener("touchstart", (e) => {
+                e.preventDefault();
+                isDrawing = true;
+                const rect = canvas.getBoundingClientRect();
+                const touch = e.touches[0];
+                const x = touch.clientX - rect.left;
+                const y = touch.clientY - rect.top;
+                scratch(x, y);
+            });
+
+            canvas.addEventListener("touchmove", (e) => {
+                e.preventDefault();
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const touch = e.touches[0];
+                const x = touch.clientX - rect.left;
+                const y = touch.clientY - rect.top;
+                scratch(x, y);
+            });
+
+            canvas.addEventListener("touchend", (e) => {
+                e.preventDefault();
+                isDrawing = false;
+            });
+        }
+
+        // Initialize scratch card when page loads
+        window.addEventListener('load', () => {
+            initScratchCard();
+        });
+    </script>
+</body>
+
+</html>
